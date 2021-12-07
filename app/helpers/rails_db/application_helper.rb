@@ -24,7 +24,7 @@ module RailsDb
     end
 
     def rails_connection_names
-      RailsDb.selectable_databases
+      RailsDb.selectable_databases.keys
     end
 
     def link_to_add_fields(name, f, type)

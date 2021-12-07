@@ -30,7 +30,7 @@ module RailsDb
         results = nil
 
         execute_with_sandbox_if_needed do
-          results = connection.exec_query(sql)
+          results = connections.exec_query(sql)
         end
 
         execution_time = Time.now - t0

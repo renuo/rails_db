@@ -2,17 +2,16 @@ module RailsDb
   module Connection
 
     def connections
-      connection = database_configurations[chosen_connection] || database_configurations
-      ActiveRecord::Base.establish_connection(connection).connection
+      database_configurations[chosen_connection].connection
     end
 
     def database_configurations
-      Rails.application.config.database_configuration[Rails.env]
+      RailsDb.selectable_databases
     end
 
     def chosen_connection
-      return RailsDb.primary_database if (RailsDb.selectable_databases.include?(RailsDb.primary_database.presence))
-      return RailsDb.selectable_databases[0] unless RailsDb.selectable_databases.blank?
+      return RailsDb.primary_database if RailsDb.selectable_databases[RailsDb.primary_database.presence].present?
+      return RailsDb.selectable_databases.keys[0] unless RailsDb.selectable_databases.blank?
 
       nil
     end

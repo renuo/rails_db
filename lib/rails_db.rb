@@ -27,7 +27,7 @@ module RailsDb
 
   ## Selectable databases
   mattr_accessor :selectable_databases
-  @@selectable_databases = []
+  @@selectable_databases = {}
 
   # automatic engine routes mouting
   mattr_accessor :automatic_routes_mount

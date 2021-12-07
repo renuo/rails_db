@@ -1,8 +1,8 @@
-<h3>Tables</h3>
+<h3>
+  Databases
+</h3>
 
-<input id='rails_db_tables_input' placeholder='... quick filter by table name'>
-
-<ul>
+<ul class="side-nav">
   <% rails_connection_names.each do |connection_name| %>
     <li>
       <%= link_to root_path(primary_database: connection_name), class: 'sidebar_table' do %>
@@ -12,6 +12,10 @@
     </li>
   <% end %>
 </ul>
+
+<h3>Tables</h3>
+
+<input id='rails_db_tables_input' placeholder='... quick filter by table name'>
 
 <ul class="side-nav tables" id='rails_db_tables'>
   <% rails_db_tables.each do |table| %>
