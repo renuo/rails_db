@@ -15,7 +15,7 @@ module RailsDb
     end
 
     def self.tables
-      connection.tables.sort - ['schema_migrations']
+      connections.tables.sort - ['schema_migrations']
     end
 
     def self.accessible_tables
@@ -30,7 +30,7 @@ module RailsDb
     end
 
     def self.adapter
-      case connection.class.to_s
+      case connections.class.to_s
       when /Mysql/
         RailsDb::Adapters::Mysql
       when /Postgre/

@@ -23,6 +23,10 @@ module RailsDb
       RailsDb::Database.accessible_tables
     end
 
+    def rails_connection_names
+      RailsDb.selectable_databases
+    end
+
     def link_to_add_fields(name, f, type)
       new_object = f.object.send "build_#{type}"
       id = "new_#{type}"

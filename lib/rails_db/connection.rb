@@ -1,14 +1,24 @@
 module RailsDb
   module Connection
 
-    def connection
-      ActiveRecord::Base.connection
-    rescue ActiveRecord::ConnectionNotEstablished
-      ActiveRecord::Base.establish_connection(Rails.application.config.database_configuration[Rails.env]).connection
+    def connections
+      connection = database_configurations[chosen_connection] || database_configurations
+      ActiveRecord::Base.establish_connection(connection).connection
+    end
+
+    def database_configurations
+      Rails.application.config.database_configuration[Rails.env]
+    end
+
+    def chosen_connection
+      return RailsDb.primary_database if (RailsDb.selectable_databases.include?(RailsDb.primary_database.presence))
+      return RailsDb.selectable_databases[0] unless RailsDb.selectable_databases.blank?
+
+      nil
     end
 
     def columns
-      connection.columns(name)
+      connections.columns(name)
     end
 
     def column_properties
@@ -22,6 +32,5 @@ module RailsDb
     def column_names
       columns.collect(&:name)
     end
-
   end
 end

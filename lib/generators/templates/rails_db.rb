@@ -26,5 +26,11 @@ if Object.const_defined?('RailsDb')
 
     # # Sandbox mode (only read-only operations)
     # config.sandbox = false
+    
+    # # Primary Database
+    # config.primary_database = nil
+    
+    # # Selectable Databases
+    # config.selectable_databases = ['']
   end
 end

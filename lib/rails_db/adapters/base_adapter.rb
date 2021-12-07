@@ -20,7 +20,7 @@ module RailsDb
       def self.execute(sql)
         t0 = Time.now
         execute_with_sandbox_if_needed do
-          connection.execute(sql)
+          connections.execute(sql)
         end
         Time.now - t0
       end
@@ -71,11 +71,11 @@ module RailsDb
       end
 
       def self.primary_key(table_name)
-        connection.primary_key(table_name)
+        connections.primary_key(table_name)
       end
 
       def self.indexes(table_name)
-        connection.indexes(table_name)
+        connections.indexes(table_name)
       end
 
       private
@@ -83,7 +83,7 @@ module RailsDb
       def self.multiple_execute(sql, divider = ";\n")
         sql.split(divider).each do |statement|
           execute_with_sandbox_if_needed do
-            connection.execute(statement)
+            connections.execute(statement)
           end
         end
       end

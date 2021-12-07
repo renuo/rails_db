@@ -21,6 +21,14 @@ module RailsDb
   mattr_accessor :sandbox
   @@sandbox = false
 
+  # Primary database
+  mattr_accessor :primary_database
+  @@primary_database = nil
+
+  ## Selectable databases
+  mattr_accessor :selectable_databases
+  @@selectable_databases = []
+
   # automatic engine routes mouting
   mattr_accessor :automatic_routes_mount
   @@automatic_routes_mount = true

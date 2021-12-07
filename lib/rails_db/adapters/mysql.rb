@@ -14,7 +14,7 @@ module RailsDb
         results = nil
 
         execute_with_sandbox_if_needed do
-          results = connection.execute(sql, 'SQL') # used from RoR mysql adapter source
+          results = connections.execute(sql, 'SQL') # used from RoR mysql adapter source
         end
 
         result  = MysqlResult.new(results)

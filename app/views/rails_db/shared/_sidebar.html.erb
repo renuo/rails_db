@@ -2,6 +2,17 @@
 
 <input id='rails_db_tables_input' placeholder='... quick filter by table name'>
 
+<ul>
+  <% rails_connection_names.each do |connection_name| %>
+    <li>
+      <%= link_to root_path(primary_database: connection_name), class: 'sidebar_table' do %>
+        <%= fa_icon 'database' %>
+        <%= connection_name %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
 <ul class="side-nav tables" id='rails_db_tables'>
   <% rails_db_tables.each do |table| %>
     <li>
